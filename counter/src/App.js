@@ -9,16 +9,18 @@ import { connect } from 'react-redux';
 
 class App extends Component {
   render() {
-    console.log(this.props.state);
+    console.log(this.props.count)
     return (
       <div className="App">
         <h1>THE BOSS COUNTER</h1>
-        <h1>0</h1>
+        <h1>{this.props.count}</h1>
         <button 
+          onClick={( ) => this.props.decrement( this.props.count )}
           className="minusButton">
           -
         </button>
         <button 
+          onClick={( ) => this.props.increment( this.props.count )}
           className="plusButton">
           +
         </button>
@@ -33,11 +35,11 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    number: state.number
+    count: state.counter
   }
 }
 
 export default connect(
   mapStateToProps, 
-  {increment, decrement}
-)(App);
+  { increment, decrement }) 
+  ( App );
